@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>dz 8</title>
+	<link rel="stylesheet" href="index88.css">
+</head>
+<body>
+	<form name="elements">
+		<div>
+			<label for="name">Cписок дел:</label>
+		</div>
+		<div>
+			<input name="name" id="name" type="text" placeholder="Ваше дело "  value="Дело:">
+		</div>
+		<div>
+			<button name="button">Добавить </button>
+		</div>
+	</form>
+	<ol id="list-activities"></ol>
+	<script>
+		const $form = document.forms.elements;
+		const $list = document.getElementById('list-activities');
+		const savedList = localStorage.getItem('list');
+
+		if (savedList) {
+		$list.innerHTML = savedList;
+      }
+
+		function defender(tiguan) {
+		const $li = document.createElement('li');
+		const $spanActivities = document.createElement('span');
+		$spanActivities.textContent = tiguan;
+		$li.append($spanActivities);
+			return $li;
+		}
+		$form.addEventListener('submit', function(e) {
+			e.preventDefault();
+
+			const tiguan = $form.name.value;
+			const $newActivities = defender(tiguan);
+			$list.append($newActivities);
+
+			localStorage.setItem('list', $list.innerHTML)
+		})
+	</script>
+</body>
+</html>
